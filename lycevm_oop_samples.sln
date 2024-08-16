@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "atm_procedural", "atm_proce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "atm_oop", "atm_oop\atm_oop.csproj", "{FF98EC4D-1C10-4213-9126-55CDB10EC276}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coffee_shop_oop", "coffee_shop_oop\coffee_shop_oop\coffee_shop_oop.csproj", "{5C2160ED-6502-4C75-A203-0747C28F4C38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FF98EC4D-1C10-4213-9126-55CDB10EC276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF98EC4D-1C10-4213-9126-55CDB10EC276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF98EC4D-1C10-4213-9126-55CDB10EC276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
