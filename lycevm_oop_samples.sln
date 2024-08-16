@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "atm_oop", "atm_oop\atm_oop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coffee_shop_oop", "coffee_shop_oop\coffee_shop_oop\coffee_shop_oop.csproj", "{5C2160ED-6502-4C75-A203-0747C28F4C38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bowling_samples", "bowling_samples\bowling_samples.csproj", "{D222EAD3-439E-42E4-BFD1-B56B08A70A5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2160ED-6502-4C75-A203-0747C28F4C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D222EAD3-439E-42E4-BFD1-B56B08A70A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D222EAD3-439E-42E4-BFD1-B56B08A70A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D222EAD3-439E-42E4-BFD1-B56B08A70A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D222EAD3-439E-42E4-BFD1-B56B08A70A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
