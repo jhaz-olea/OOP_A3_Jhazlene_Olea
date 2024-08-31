@@ -1,7 +1,31 @@
-﻿using System.Text.Json;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
 
 namespace coffee_shop_procedural;
 
+public class Menu
+{
+    public Menu(string menuFile)
+    {
+        LoadMenu(menuFile);
+
+    }
+
+    public List<string> MenuItems { get; private set; }
+    public List<decimal> MenuPrices { get; private set; }
+
+    void LoadMenu(string menuFile)
+    {
+        if (File.Exists(menuFile))
+        {
+            string json = File.ReadAllText(menuFile);
+            var menu = JsonSerializer.Deserialize<Dictionary<string, decimal>>(json);
+            MenuItems = new List<string>(menu.Keys);
+            MenuPrices = new List<decimal>(menu.Values);
+        }
+    }
+
+}
 internal class Program
 {
     public static void Main(string[] args)
@@ -11,6 +35,8 @@ internal class Program
         List<int> orderItems = [];
         Dictionary<string, string> users = [];
         string? currentUser = null;
+        PointOfSale pos = new PointOfSale();
+
 
         string dataDirectory = "data";
         string usersFile = Path.Combine(dataDirectory, "users.json");
@@ -19,14 +45,24 @@ internal class Program
 
         Directory.CreateDirectory(dataDirectory);
 
-        LoadUsers();
-        if (!Login())
+        
+        Console.WriteLine("Enter username: ");
+        string username = Console.ReadLine();
+
+        Console.WriteLine("Enter password: ");
+        string password = Console.ReadLine();
+
+        currentUser = new Identity(usersFile).Login(username, password);
+        if (string.IsNullOrEmpty(currentUser))
         {
             Console.WriteLine("Invalid login. Exiting...");
             return;
         }
 
-        LoadMenu();
+        Menu menu = new Menu(menuFile);
+        menuItems = menu.MenuItems;
+        menuPrices = menu.MenuPrices;
+
         LoadOrders();
 
         bool running = true;
@@ -58,7 +94,7 @@ internal class Program
                     ViewOrder();
                     break;
                 case "5":
-                    CalculateTotal();
+                    pos.CalculateTotal(orderItems, menuPrices, currentUser);
                     break;
                 case "6":
                     running = false;
@@ -72,51 +108,10 @@ internal class Program
         SaveMenu();
         SaveOrders();
 
-        void LoadUsers()
-        {
-            if (File.Exists(usersFile))
-            {
-                string json = File.ReadAllText(usersFile);
-                users = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-            }
-            else
-            {
-                users.Add("admin", "password"); // Default user
-                SaveUsers();
-            }
-        }
 
-        void SaveUsers()
-        {
-            string json = JsonSerializer.Serialize(users);
-            File.WriteAllText(usersFile, json);
-        }
+       
 
-        bool Login()
-        {
-            Console.Write("Enter username: ");
-            string username = Console.ReadLine();
-            Console.Write("Enter password: ");
-            string password = Console.ReadLine();
-
-            if (users.ContainsKey(username) && users[username] == password)
-            {
-                currentUser = username;
-                return true;
-            }
-            return false;
-        }
-
-        void LoadMenu()
-        {
-            if (File.Exists(menuFile))
-            {
-                string json = File.ReadAllText(menuFile);
-                var menu = JsonSerializer.Deserialize<Dictionary<string, decimal>>(json);
-                menuItems = new List<string>(menu.Keys);
-                menuPrices = new List<decimal>(menu.Values);
-            }
-        }
+       
 
         void SaveMenu()
         {
@@ -193,14 +188,6 @@ internal class Program
             }
         }
 
-        void CalculateTotal()
-        {
-            decimal total = 0;
-            foreach (int itemIndex in orderItems)
-            {
-                total += menuPrices[itemIndex];
-            }
-            Console.WriteLine($"Total Amount Payable by {currentUser}: {total:C}");
-        }
+       
     }
 }
