@@ -1,0 +1,40 @@
+# Project: CoffeeShopApp1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = MenuItem.o Menu.o Order.o CoffeeShop.o main.o
+LINKOBJ  = MenuItem.o Menu.o Order.o CoffeeShop.o main.o
+LIBS     = -L"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/lib" -L"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -std=c++11 -g3
+INCS     = -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/include" -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/include" -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/jjjjjj/Desktop/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = CoffeeShopApp1.exe
+CXXFLAGS = $(CXXINCS) -g3 -std=c++11
+CFLAGS   = $(INCS) -g3 -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+MenuItem.o: MenuItem.cpp
+	$(CPP) -c MenuItem.cpp -o MenuItem.o $(CXXFLAGS)
+
+Menu.o: Menu.cpp
+	$(CPP) -c Menu.cpp -o Menu.o $(CXXFLAGS)
+
+Order.o: Order.cpp
+	$(CPP) -c Order.cpp -o Order.o $(CXXFLAGS)
+
+CoffeeShop.o: CoffeeShop.cpp
+	$(CPP) -c CoffeeShop.cpp -o CoffeeShop.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
